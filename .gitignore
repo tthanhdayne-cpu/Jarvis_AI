@@ -1,0 +1,37 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+venv/
+.venv/
+
+# Logs
+logs/
+*.log
+jarvis_log.txt
+
+# Secrets
+config/api_keys.json
+.env
+*.key
+*.pem
+native_host/bridge_secret.bin
+
+# Runtime data
+memory/long_term.json
+
+# Backup files
+*.backup-*
+*.stable
+*.stable-*
+main_backup.py
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+*.crx

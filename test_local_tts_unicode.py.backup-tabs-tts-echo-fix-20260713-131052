@@ -1,0 +1,61 @@
+import unittest
+from pathlib import Path
+
+from main import JarvisLive
+from actions.windows_action_registry import WINDOWS_ACTION_REGISTRY
+
+
+def tearDownModule():
+    WINDOWS_ACTION_REGISTRY.shutdown(wait=False)
+
+
+class LocalTtsUnicodeTests(unittest.TestCase):
+    def test_vietnamese_responses_are_unicode(self):
+        tabs = [{"title": title} for title in ("YouTube", "Gmail", "GitHub", "Google Drive")]
+        text = JarvisLive._fast_response_text(
+            "list_browser_tabs",
+            {"status": "completed", "data": {"tabs": tabs}},
+        )
+        self.assertEqual(
+            text,
+            "Bạn đang mở 4 tab: YouTube, Gmail, GitHub và Google Drive.",
+        )
+        self.assertEqual(text.encode("utf-8").decode("utf-8"), text)
+
+    def test_only_bridge_unavailable_gets_extension_message(self):
+        self.assertEqual(
+            JarvisLive._fast_response_text(
+                "list_browser_tabs", {"status": "bridge_unavailable"}
+            ),
+            "Không thể kết nối tiện ích trình duyệt.",
+        )
+        for status in ("routing_failed", "validation_error", "request_timeout",
+                       "native_host_unavailable", "ambiguous_target"):
+            text = JarvisLive._fast_response_text(
+                "list_browser_tabs", {"status": status}
+            )
+            self.assertNotEqual(text, "Không thể kết nối tiện ích trình duyệt.")
+
+    def test_local_tts_stdin_is_explicit_utf8(self):
+        source = Path("main.py").read_text(encoding="utf-8")
+        self.assertIn('encoding="utf-8"', source)
+        self.assertIn("[Console]::InputEncoding=[Text.UTF8Encoding]", source)
+
+    def test_count_only_and_url_like_titles_are_not_spoken(self):
+        result = {
+            "status": "completed",
+            "data": {"tabs": [{"title": "https://example.com/?secret=1"}]},
+        }
+        self.assertEqual(
+            JarvisLive._fast_response_text(
+                "list_browser_tabs", result, count_only=True
+            ),
+            "Bạn đang mở 1 tab.",
+        )
+        self.assertNotIn(
+            "https://", JarvisLive._fast_response_text("list_browser_tabs", result)
+        )
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

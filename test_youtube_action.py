@@ -1,0 +1,56 @@
+"""Dry-run YouTube resolver CLI; never imports main.py or opens a browser."""
+
+from __future__ import annotations
+
+import argparse
+import json
+import threading
+
+from actions.youtube_actions import normalize_music_query, play_youtube_video
+
+
+class DryRunRuntime:
+    def __init__(self):
+        self.expected_generation = 1
+        self.cancellation_event = threading.Event()
+        self.state_getter = lambda: "ACTIVE"
+        self.sleep_intent_getter = lambda: False
+        self.generation_getter = lambda: 1
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--query")
+    parser.add_argument("--url")
+    parser.add_argument("--channel")
+    parser.add_argument("--dry-run", action="store_true", required=True,
+                        help="Required safety flag; this script never opens the browser")
+    args = parser.parse_args()
+    if not args.query and not args.url:
+        parser.error("one of --query or --url is required")
+    if args.query:
+        normalized, inferred_channel = normalize_music_query(args.query)
+        print(f"normalized_query={normalized}")
+        if inferred_channel:
+            print(f"inferred_channel={inferred_channel}")
+    try:
+        result = play_youtube_video(
+            runtime=DryRunRuntime(), query=args.query, url=args.url,
+            channel=args.channel, dry_run=True,
+        )
+    except Exception as exc:
+        print(json.dumps({"success": False, "status": "error", "error": str(exc)}, ensure_ascii=False))
+        return 1
+    data = result.get("data", {})
+    candidates = data.get("candidates") or data.get("options") or []
+    for index, candidate in enumerate(candidates[:5], 1):
+        print(f"{index}. {candidate['title']} | {candidate['channel']} | score={candidate['score']:.4f}")
+    summary = {key: data.get(key) for key in
+               ("selected_video_id", "selected_channel", "match_score")}
+    print(json.dumps({"success": result.get("success"), "status": result.get("status"),
+                      "selected": summary}, ensure_ascii=False))
+    return 0 if result.get("status") not in {"error"} else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

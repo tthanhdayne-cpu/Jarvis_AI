@@ -1,0 +1,5 @@
+config/api_keys.json
+.env
+*.key
+*.pem
+

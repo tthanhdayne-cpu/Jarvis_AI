@@ -1,0 +1,89 @@
+D:\JARVIS\Mark-XXXIX-OR\actions\file_processor.py:28: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+qt.qpa.window: SetProcessDpiAwarenessContext() failed: Access is denied.
+Qt's default DPI awareness context is DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2. If you know what you are doing, you can overwrite this default using qt.conf (https://doc.qt.io/qt-6/highdpi.html#configuring-windows).
+  + Exception Group Traceback (most recent call last):
+  |   File "D:\JARVIS\Mark-XXXIX-OR\main.py", line 846, in run
+  |     asyncio.TaskGroup() as tg,
+  |     ^^^^^^^^^^^^^^^^^^^
+  |   File "C:\Users\tthan\AppData\Local\Programs\Python\Python312\Lib\asyncio\taskgroups.py", line 71, in __aexit__
+  |     return await self._aexit(et, exc)
+  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "C:\Users\tthan\AppData\Local\Programs\Python\Python312\Lib\asyncio\taskgroups.py", line 164, in _aexit
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (3 sub-exceptions)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "D:\JARVIS\Mark-XXXIX-OR\main.py", line 720, in _listen_audio
+    |     print("[JARVIS] \U0001f3a4 Mic started")
+    |   File "C:\Users\tthan\AppData\Local\Programs\Python\Python312\Lib\encodings\cp1252.py", line 19, in encode
+    |     return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    | UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f3a4' in position 9: character maps to <undefined>
+    +---------------- 2 ----------------
+    | Traceback (most recent call last):
+    |   File "D:\JARVIS\Mark-XXXIX-OR\main.py", line 749, in _receive_audio
+    |     print("[JARVIS] \U0001f442 Recv started")
+    |   File "C:\Users\tthan\AppData\Local\Programs\Python\Python312\Lib\encodings\cp1252.py", line 19, in encode
+    |     return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    | UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f442' in position 9: character maps to <undefined>
+    +---------------- 3 ----------------
+    | Traceback (most recent call last):
+    |   File "D:\JARVIS\Mark-XXXIX-OR\main.py", line 809, in _play_audio
+    |     print("[JARVIS] \U0001f50a Play started")
+    |   File "C:\Users\tthan\AppData\Local\Programs\Python\Python312\Lib\encodings\cp1252.py", line 19, in encode
+    |     return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    | UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f50a' in position 9: character maps to <undefined>
+    +------------------------------------
+  + Exception Group Traceback (most recent call last):
+  |   File "D:\JARVIS\Mark-XXXIX-OR\main.py", line 846, in run
+  |     asyncio.TaskGroup() as tg,
+  |     ^^^^^^^^^^^^^^^^^^^
+  |   File "C:\Users\tthan\AppData\Local\Programs\Python\Python312\Lib\asyncio\taskgroups.py", line 71, in __aexit__
+  |     return await self._aexit(et, exc)
+  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "C:\Users\tthan\AppData\Local\Programs\Python\Python312\Lib\asyncio\taskgroups.py", line 164, in _aexit
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (3 sub-exceptions)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "D:\JARVIS\Mark-XXXIX-OR\main.py", line 720, in _listen_audio
+    |     print("[JARVIS] \U0001f3a4 Mic started")
+    |   File "C:\Users\tthan\AppData\Local\Programs\Python\Python312\Lib\encodings\cp1252.py", line 19, in encode
+    |     return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    | UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f3a4' in position 9: character maps to <undefined>
+    +---------------- 2 ----------------
+    | Traceback (most recent call last):
+    |   File "D:\JARVIS\Mark-XXXIX-OR\main.py", line 749, in _receive_audio
+    |     print("[JARVIS] \U0001f442 Recv started")
+    |   File "C:\Users\tthan\AppData\Local\Programs\Python\Python312\Lib\encodings\cp1252.py", line 19, in encode
+    |     return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    | UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f442' in position 9: character maps to <undefined>
+    +---------------- 3 ----------------
+    | Traceback (most recent call last):
+    |   File "D:\JARVIS\Mark-XXXIX-OR\main.py", line 809, in _play_audio
+    |     print("[JARVIS] \U0001f50a Play started")
+    |   File "C:\Users\tthan\AppData\Local\Programs\Python\Python312\Lib\encodings\cp1252.py", line 19, in encode
+    |     return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    | UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f50a' in position 9: character maps to <undefined>
+    +------------------------------------
+[JARVIS] Connecting...
+[JARVIS] Connected.
+[JARVIS] ERROR: unhandled errors in a TaskGroup (3 sub-exceptions)
+[JARVIS] Reconnecting in 3 seconds...
+[JARVIS] Connecting...
+[JARVIS] Connected.
+[JARVIS] ERROR: unhandled errors in a TaskGroup (3 sub-exceptions)
+[JARVIS] Reconnecting in 3 seconds...
